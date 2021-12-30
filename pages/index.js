@@ -14,7 +14,7 @@ export default function Home() {
         <h1 className={styles.title}>
           Hello World!
         </h1>
-        <p className={styles.description}>This was added in branch: feature/branc-1</p>
+        <p className={styles.description}>This was added in branch: feature/branch-1</p>
       </main>
     </div>
   )
