@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next Gen Branch Builds
 
-## Getting Started
+## Description
 
-First, run the development server:
+Project used to explore how we can leverage [Netlify](https://www.netlify.com/) to automate the builds for our branches in and out of pull requests.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Why
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+We want to explore this to get a better idea of how we want to build static sites within our workflows moving forward.  Essentially, **we just want to map out the options available and then be able to choose what works best for us, as we get started with Next Gen.**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## How
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+To explore this, we will be looking at two approaches:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Initially, we will be leveraging Netlify's build hook (i.e. on every push)
+2. Second, we will look at using a GH Workflow to deploy by using the [Netlify Deploy](https://github.com/marketplace/actions/netlify-deploy) Action; this'll help give us more control over when to build (i.e. run tests after build is successful or run tests before building application)
 
-## Learn More
+The reason both will be looked at is that we want to build incrementally.  I've personally never tried branched builds on Netlify.
 
-To learn more about Next.js, take a look at the following resources:
+This is why, first, getting branched builds to work on every push would be valuable to ensure the branch is building successfully.  Then, we could go ahead and automate that another way via the GH workflow to see what that looks like.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Use Cases Considered
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Developer wants to build `master`
+* Developer wants to build `master` on merge
+* Developer wants to build `master` on merge and run tests after
+* Developer wants to build some branch (e.g. `feature/some-widget`) before opening PR
+* Developer wants to build some branch after opening PR (i.e. on push)
+* Developer wants to build some branch before opening PR, and then run tests
+* Developer wants to build some branch after opening PR, and then run tests
